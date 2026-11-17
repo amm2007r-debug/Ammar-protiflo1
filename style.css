@@ -1,0 +1,703 @@
+/* =========================
+   1. General Settings
+========================= */
+
+:root {
+    --bg: #080D18;
+    --surface: #101A2B;
+    --surface-light: #15233A;
+    --blue: #398BFF;
+    --blue-light: #72B5FF;
+    --text: #F3F6FC;
+    --muted: #A2AEC1;
+    --border: rgba(255,255,255,0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Cairo', sans-serif;
+    line-height: 1.8;
+}
+
+body.english {
+    font-family: 'Inter', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+.container {
+    width: min(1100px, 90%);
+    margin: auto;
+}
+
+.section {
+    padding: 100px 0;
+}
+
+
+/* =========================
+   2. Navbar
+========================= */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(8,13,24,0.92);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-content {
+    min-height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 20px;
+    direction: ltr;
+}
+
+.logo > span:first-child {
+    background: var(--blue);
+    padding: 3px 8px;
+    border-radius: 8px;
+    color: white;
+}
+
+.blue {
+    color: var(--blue-light);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: var(--muted);
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--blue-light);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lang-btn,
+.menu-btn {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: white;
+    border-radius: 8px;
+    padding: 7px 12px;
+}
+
+.lang-btn {
+    font-weight: bold;
+}
+
+.menu-btn {
+    display: none;
+    font-size: 20px;
+}
+
+
+/* =========================
+   3. Hero Section
+========================= */
+
+.hero {
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    align-items: center;
+    gap: 60px;
+}
+
+.welcome {
+    color: var(--blue-light);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 5vw, 55px);
+    margin: 18px 0;
+    direction: ltr;
+    text-align: start;
+}
+
+.hero h2 {
+    font-size: 21px;
+    color: #C3D1E5;
+    margin-bottom: 15px;
+}
+
+.hero-description {
+    color: var(--muted);
+    max-width: 570px;
+    font-size: 16px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 14px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border-radius: 9px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.primary {
+    background: var(--blue);
+    color: white;
+}
+
+.primary:hover {
+    background: #2273E5;
+    transform: translateY(-3px);
+}
+
+.secondary {
+    border: 1px solid var(--blue);
+    color: var(--blue-light);
+}
+
+.secondary:hover {
+    background: rgba(57,139,255,0.1);
+}
+
+
+/* =========================
+   4. Profile Image
+========================= */
+
+.hero-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-frame {
+    position: relative;
+    z-index: 2;
+    width: 280px;
+    height: 340px;
+    padding: 7px;
+    border: 2px solid var(--blue);
+    border-radius: 30px;
+    transform: rotate(3deg);
+    background: var(--surface);
+}
+
+.profile-placeholder {
+    height: 100%;
+    border-radius: 23px;
+    background: linear-gradient(145deg, #142B4B, #0B1424);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: var(--blue-light);
+}
+
+.profile-placeholder span {
+    font-size: 75px;
+    font-weight: 800;
+}
+
+.profile-placeholder small {
+    font-size: 13px;
+}
+
+.image-glow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: var(--blue);
+    filter: blur(130px);
+    opacity: 0.25;
+}
+
+.floating-card {
+    position: absolute;
+    bottom: 15px;
+    right: -10px;
+    z-index: 3;
+    background: var(--surface-light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 15px;
+    font-size: 12px;
+}
+
+[dir="ltr"] .floating-card {
+    right: auto;
+    left: -10px;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #32D583;
+    border-radius: 50%;
+    margin-inline-end: 6px;
+}
+
+
+/* =========================
+   5. Section Headings
+========================= */
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-heading > span {
+    color: var(--blue-light);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+    font-size: 32px;
+    margin-top: 5px;
+}
+
+
+/* =========================
+   6. About
+========================= */
+
+.about {
+    background: #0B1220;
+}
+
+.about-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 30px;
+    color: var(--muted);
+}
+
+.about-box p + p {
+    margin-top: 15px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px;
+    text-align: center;
+    border-radius: 14px;
+}
+
+.stat-card h3 {
+    color: var(--blue-light);
+    font-size: 30px;
+}
+
+.stat-card p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+
+/* =========================
+   7. Skills
+========================= */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+
+.skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.skill-card:hover {
+    transform: translateY(-7px);
+    border-color: var(--blue);
+    background: var(--surface-light);
+}
+
+.skill-icon {
+    font-size: 30px;
+}
+
+.skill-card h3 {
+    margin: 12px 0 5px;
+    font-size: 18px;
+}
+
+.skill-card p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+
+/* =========================
+   8. Projects
+========================= */
+
+.projects {
+    background: #0B1220;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+}
+
+.project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--blue);
+}
+
+.project-icon {
+    background: linear-gradient(135deg, #173A67, #10213B);
+    padding: 25px;
+    font-size: 45px;
+    text-align: center;
+}
+
+.project-info {
+    padding: 22px;
+}
+
+.project-label {
+    color: var(--blue-light);
+    font-size: 12px;
+}
+
+.project-info h3 {
+    margin: 8px 0;
+    font-size: 21px;
+}
+
+.project-info p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.tags span {
+    background: rgba(57,139,255,0.12);
+    color: var(--blue-light);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+}
+
+
+/* =========================
+   9. Contact
+========================= */
+
+.contact-box {
+    text-align: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px 20px;
+    border-radius: 18px;
+}
+
+.contact-box h3 {
+    font-size: 24px;
+}
+
+.contact-box p {
+    color: var(--muted);
+    margin: 10px 0 25px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.social-links a {
+    color: var(--blue-light);
+    font-size: 14px;
+}
+
+
+/* =========================
+   10. Footer
+========================= */
+
+.footer {
+    text-align: center;
+    padding: 25px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+}
+
+
+/* =========================
+   11. Responsive Design
+========================= */
+
+@media (max-width: 850px) {
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 5%;
+        right: 5%;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 55px;
+    }
+
+    .hero h1 {
+        text-align: center;
+    }
+
+    .hero-description {
+        margin: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-image {
+        grid-row: 1;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media (max-width: 550px) {
+
+    .section {
+        padding: 70px 0;
+    }
+
+    .hero {
+        padding-top: 60px;
+    }
+
+    .profile-frame {
+        width: 220px;
+        height: 270px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading h2 {
+        font-size: 27px;
+    }
+
+    .hero h2 {
+        font-size: 17px;
+    }
+}
+
+
+/* =========================
+   12. Scroll Animation
+========================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+/* =========================
+   Professional Profile Photo
+========================= */
+
+.profile-frame {
+    position: relative;
+    width: 290px;
+    height: 350px;
+    padding: 6px;
+    border-radius: 28px;
+    background: linear-gradient(
+        135deg,
+        #00A8FF,
+        #176BFF,
+        #101A2B,
+        #00D4FF
+    );
+    box-shadow:
+        0 0 20px rgba(0, 140, 255, 0.25),
+        0 0 50px rgba(0, 100, 255, 0.15);
+    overflow: hidden;
+    transition: 0.5s ease;
+}
+
+.profile-frame:hover {
+    transform: translateY(-8px) rotate(0deg);
+    box-shadow:
+        0 0 25px rgba(0, 140, 255, 0.5),
+        0 0 70px rgba(0, 100, 255, 0.3);
+}
+
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 23px;
+    border: 2px solid rgba(255,255,255,0.08);
+    filter: contrast(1.05);
+    transition: 0.5s ease;
+}
+
+.profile-frame:hover .profile-photo {
+    transform: scale(1.04);
+}
+
+/* Blue Glow */
+
+.image-glow {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    background: #087CFF;
+    filter: blur(100px);
+    opacity: 0.3;
+    z-index: 0;
+}
+
+/* Mobile */
+
+@media (max-width: 550px) {
+    .profile-frame {
+        width: 235px;
+        height: 285px;
+    }
+}
